@@ -9,7 +9,6 @@
     <div v-if="todos.length <= 0" class="empty_todos">Список задач пуст</div>
     <div v-for="todo in todos" :class="{done : todo.completed}" @click="todo.completed = !todo.completed" :todo="todo" :key="todo" class="todos-item">
       <div class="todo_body">{{todo.body}}</div>
-      <div>{{todo.completed}}</div>
       <button  @click="removetask" class="remove_btn"><i class="las la-trash"></i></button>
     </div>
   </div>
