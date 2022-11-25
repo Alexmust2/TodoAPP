@@ -202,7 +202,7 @@ input{
   cursor: pointer;
 }
 
-@media only screen and (max-device-width: 400px) {
+@media only screen and (max-device-width: 480px) {
   .input_box {
     width: 300px;
     height: 100%;
