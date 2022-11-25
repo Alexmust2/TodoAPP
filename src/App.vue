@@ -3,8 +3,10 @@
     <h1>Список задач ( {{todos.length}} )</h1>
     <form @submit.prevent="">
       <input v-focus class="input_todo" type="text" v-model="Newtodo" placeholder="Чем хотите заняться?">
-      <button class="input_btn" @click="addtask" style="margin-left: 15px;">+</button>
-      <button class="clear_btn" @click="todos = []">Clear all</button>
+      <div class="form_btn">
+        <button class="input_btn" @click="addtask" style="margin-left: 15px;">+</button>
+        <button class="clear_btn" @click="todos = []">Clear all</button>
+      </div>
     </form>
     <div v-if="todos.length <= 0" class="empty_todos">Список задач пуст</div>
     <TransitionGroup name="todo_list">
@@ -71,6 +73,11 @@ export default{
   margin-left: 15px;
   color: white;
   cursor: pointer;
+}
+
+.form_btn {
+  display: flex;
+  flex-direction: row;
 }
 
 body {
@@ -191,20 +198,57 @@ input{
   background-color: rgb(250, 59, 59);
   font-size: 30px;
   color: white;
+  text-decoration: none;
   cursor: pointer;
 }
 
 @media only screen and (max-device-width: 400px) {
   .input_box {
     width: 300px;
+    height: 100%;
+  }
+
+  input[type="text"] {
+    width: 65%;
+    margin-left: -20px;
+    position: absolute;
+    z-index: 2;
+    margin-top: 15px;
+  }
+
+  
+  .todos-item {
+    margin-bottom:25px;
+  }
+
+  .input_btn {
+    font-size: 18px;
+    position: relative;
+    left: 170px;
+    top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+  }
+
+  .clear_btn {
+    margin-top: 70%;
+    position: relative;
+    left: -175px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
   }
 
   .remove_btn {
-    width: 30px;
-    height: 30px;
-    margin-right: 20px;
+    width: 20px;
+    height: 40px;
+    margin-right: 10px;
     font-size: 20px;
+    display: flex;
     align-items: center;
+    justify-content: center;
+    text-decoration: none;
   }
   h1 {
     font-size: 16px;
