@@ -193,4 +193,25 @@ input{
   color: white;
   cursor: pointer;
 }
+
+@media (max-width: 480px) {
+  .input_box {
+    width: 300px;
+  }
+
+  .remove_btn {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    font-size: 20px;
+    align-items: center;
+  }
+  h1 {
+    font-size: 16px;
+  }
+  .todo_body {
+    font-size: 14px;
+  }
+ }
+
 </style>
