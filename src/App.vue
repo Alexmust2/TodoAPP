@@ -7,10 +7,12 @@
       <button class="clear_btn" @click="todos = []">Clear all</button>
     </form>
     <div v-if="todos.length <= 0" class="empty_todos">Список задач пуст</div>
-    <div v-for="todo in todos" :class="{done : todo.completed}" @click="todo.completed = !todo.completed" :todo="todo" :key="todo" class="todos-item">
-      <div class="todo_body">{{todo.body}}</div>
-      <button  @click="removetask" class="remove_btn"><i class="las la-trash"></i></button>
-    </div>
+    <TransitionGroup name="todo_list">
+      <div v-for="todo in todos" :class="{done : todo.completed}" :todo="todo" :key="todo" class="todos-item">
+        <div @click="todo.completed = !todo.completed"  class="todo_body">{{todo.body}}</div>
+        <button @click="removetask(index)" class="remove_btn"><i class="las la-trash"></i></button>
+      </div>
+    </TransitionGroup>
   </div>
 </template>
 
@@ -39,22 +41,25 @@ export default{
         this.Newtodo = '';
       }
     },
-    clearCompleted(todo) {
-      for (todo in this.todos){
-        console.log(todo.body)
-      }
-      }
-    },
     removetask(index) {
       this.todos.splice(index, 1)
     },
-
-
+  },
 }
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+.todo_list-enter-active,
+.todo_list-leave-active {
+  transition: all 0.5s ease;
+}
+.todo_list-enter-from,
+.todo_list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
 
 .clear_btn {
   width: 45px;
@@ -81,6 +86,10 @@ body {
   
 }
 
+.done {
+  background-color: aquamarine;
+}
+
 .empty_todos {
   font-size: 24px;
   font-weight: bold;
@@ -105,7 +114,7 @@ body {
 
 .input_todo {
   padding-left: 15px;
-  width: 78%;
+  width: 79%;
 }
 
 input[type="text"]
@@ -148,6 +157,7 @@ input{
   min-height: 20px;
   border: 1px solid grey;
   display:flex;
+  position: relative;
   margin: 20px 21px;
   padding: 3px;
   border-radius:5px;
@@ -159,9 +169,10 @@ input{
 .todo_body{
   font-size: 20px;
   font-weight: bold;
-  max-width: 80%;
+  width: 80%;
   padding: 15px;
   position: relative;
+  z-index: 2;
 }
 
 .todos-item:hover{
