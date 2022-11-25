@@ -8,9 +8,9 @@
     </form>
     <div v-if="todos.length <= 0" class="empty_todos">Список задач пуст</div>
     <TransitionGroup name="todo_list">
-      <div v-for="todo in todos" :class="{done : todo.completed}" :todo="todo" :key="todo" class="todos-item">
+      <div v-for="todo, index in todos" :class="{done : todo.completed}" :todo="todo" :key="todo" class="todos-item">
         <div @click="todo.completed = !todo.completed"  class="todo_body">{{todo.body}}</div>
-        <button @click="removetask(index)" class="remove_btn"><i class="las la-trash"></i></button>
+        <button @click="removeTask(index)" class="remove_btn"><i class="las la-trash"></i></button>
       </div>
     </TransitionGroup>
   </div>
@@ -41,8 +41,8 @@ export default{
         this.Newtodo = '';
       }
     },
-    removetask(index) {
-      this.todos.splice(index, 1)
+    removeTask(index) {
+      this.todos.splice(index, 1);
     },
   },
 }
