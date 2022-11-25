@@ -194,7 +194,7 @@ input{
   cursor: pointer;
 }
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-device-width: 400px) {
   .input_box {
     width: 300px;
   }
