@@ -4,7 +4,7 @@
     <form @submit.prevent="">
       <input v-focus class="input_todo" type="text" v-model="Newtodo" placeholder="Чем хотите заняться?">
       <button class="input_btn" @click="addtask" style="margin-left: 15px;">+</button>
-      <button @click="todos = []">Clear all</button>
+      <button class="clear_btn" @click="todos = []">Clear all</button>
     </form>
     <div v-if="todos.length <= 0" class="empty_todos">Список задач пуст</div>
     <div v-for="todo in todos" :class="{done : todo.completed}" @click="todo.completed = !todo.completed" :todo="todo" :key="todo" class="todos-item">
@@ -40,8 +40,9 @@ export default{
       }
     },
     clearCompleted(todo) {
-      if(this.todos.completed = true){
-        this.todos = this.todos.filter(todo.completed = false)
+      for (todo in this.todos){
+        console.log(todo.body)
+      }
       }
     },
     removetask(index) {
@@ -49,13 +50,23 @@ export default{
     },
 
 
-
-    }
 }
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+.clear_btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 11px;
+  border: none;
+  background-color: rgb(250, 59, 59);
+  font-size: 12px;
+  margin-left: 15px;
+  color: white;
+  cursor: pointer;
+}
 
 body {
   background: #352f5b;
@@ -65,7 +76,9 @@ body {
 }
 
 .done {
-  background: greenyellow
+  background: rgba(183, 240, 99, 0.757);
+  text-decoration: line-through;
+  
 }
 
 .empty_todos {
@@ -75,15 +88,19 @@ body {
   color: rgb(151, 11, 11)
 }
 
+::-webkit-scrollbar-button {
+  visibility: hidden;
+}
+
 .input_box{
   width: 560px;
-  max-height: 50rem;
+  max-height: 45rem;
   min-height: 10rem;
   background: white;
   padding: 5px 25px;
   border-radius: 15px;
   margin-top: 8%;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .input_todo {
@@ -108,6 +125,7 @@ input{
   height: 40px;
   border: 1px solid grey;
   border-radius: 5px;
+  margin-left: 20px;
 }
 
 .input_btn{
@@ -141,14 +159,14 @@ input{
 .todo_body{
   font-size: 20px;
   font-weight: bold;
-  padding: 15px;
   max-width: 80%;
+  padding: 15px;
   position: relative;
 }
 
 .todos-item:hover{
   cursor: pointer;
-  background: rgb(161, 160, 160);
+  background: rgba(161, 160, 160, 0.719);
 }
 
 .remove_btn{

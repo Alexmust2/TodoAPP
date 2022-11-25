@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@kyvg/vue3-notification": "^2.6.1",
     "core-js": "^3.8.3",
     "v-click-outside": "^3.2.0",
     "vue": "^3.2.13",

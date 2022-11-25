@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import directives from '@/directives';
 
+
 const app = createApp(App)
 
 directives.forEach(directive => {
